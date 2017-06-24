@@ -14,7 +14,7 @@ This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/WoocommerceXeroStripeFees` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/woocommerce-xero-stripe-fees` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the Woocommerce->Xero screen to configure the plugin
 
