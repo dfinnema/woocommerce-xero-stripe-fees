@@ -23,4 +23,4 @@ This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero
 
 = I have a question or issue =
 
-Please head over to https://github.com/dfinnema/WoocommerceXeroStripe
+Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
