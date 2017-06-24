@@ -1,5 +1,5 @@
 # WoocommerceXeroStripe
-This is a MU-Plugin for Wordpress using Woocommerce with the Woocommerce Xero Extension and Stripe
+This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero** Extension and **Stripe**
 
 **Please note this is a work in progress and probably has a lot of bugs in it. The code is quick and dirty so feel free to add / change to it.**
 ### Features
