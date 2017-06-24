@@ -9,13 +9,14 @@ This is a MU-Plugin for Wordpress using Woocommerce with the Woocommerce Xero Ex
 
 ### Installation
 
-1. Edit the varible ```$xero_fees_account``` to specify your Xero Stripe Fee Account Code
-2. Upload the .php file to ```wp-content/mu-plugins/``` (if the directory does not exist create it)
-3. Test to see if it works (see debug below)
+1. Download as .zip and add plugin using the upload function or add the .php file to ```wp-content/plugins/WoocommerceXeroStripe``` 
+2. Activate the plugin in Wordpress
+3. Add the Xero 'Stripe Fee' account code in ```Woocommerce > Xero``` options page (at the bottom)
+4. Test to see if it works (see debug below)
 
 ### Requirements
 
-This MU-Plugin requires the following plugins to be active in Wordpress
+This Plugin requires the following plugins to be active in Wordpress
 
 | Plugin | Link |
 | ------ | ------ |
@@ -24,11 +25,11 @@ This MU-Plugin requires the following plugins to be active in Wordpress
 
 ### Bugs
 
-[ ] Seems to have issues with just 1 product (add atleast two for now)
+Please create a new issue if you are able to reproduce your bug
 
 ### Debug
 
-If it does not seem to work ensure you can see the plugin under the 'Must Use' section
+Enable debug under ```Woocommerce > Xero```
 
 Logs are created in the ```wp-content/uploads/wc-logs``` the filename should start with **log** followed by a bunch of numbers with the extension of **.log**
 
@@ -36,4 +37,4 @@ Logs are created in the ```wp-content/uploads/wc-logs``` the filename should sta
 
 Want to contribute? Great!
 
-Feel free to post an issue or create a merge request. 
+Feel free to post an issue or create a pull request. 

@@ -16,15 +16,20 @@ if (!function_exists('untrailingslashit') || !defined('WP_PLUGIN_DIR')) {
 // Add Stripe Fees to Invoices send to Xero
 function dfc_xero_stripe_fee( $in ) {
     
-
-// Options
-    
-    // This is the Xero account code for the Stripe Fee (that you create undeer Chart of accounts in Xero)
-    $xero_fees_account = 766;
-    
-// DEBUG
+// DEBUG STUFF
 $logger = new WC_Logger();
-   
+    
+// This is the Xero account code for the Stripe Fee (that you create under Chart of accounts in Xero)
+$xero_fees_account = get_option('wc_xero_dfc_stripe_fee_account', 0);
+
+if (0 == $xero_fees_account) {
+
+    // DEBUG
+    $logger->log( "debug","Abort Stripe Fee -> No Xero Stripe Fee Account Code Set");
+
+    return $in;
+}
+      
 // Read XML to object, with Wrappers, otherwise the xml parser panics...
 $xml = new SimpleXMLElement('<root>'.$in.'</root>');
 
@@ -33,11 +38,9 @@ $data_array = json_decode(json_encode($xml),true);
     
 // Get Order ID from Data
 $arr = explode('post.php?post=', $data_array['Invoice']['Url']);
-$logger->log( "debug","  + RAW: ".$arr[1] );
 $order_id = $arr[1];
 $arr = explode('&', $order_id);
 $order_id = $arr[0];
-$logger->log( "debug","  + Order ID: ".$arr[0] );
 
 if (empty($order_id)) {
     
@@ -90,12 +93,12 @@ if (array_key_exists('Invoice',$data_array)) {
             // Grab Exisiting Data
             foreach($data_array['Invoice']['LineItems'] as $item) {
                 
-                // Add it to thew TMP array
-                $dd['LineItems'] = $item;
+                // Add it to the TMP array
+                $dd['LineItems'][] = $item;
             }
             
             // Lastly add the Stripe Fee, Xero can calculate tax...
-            $dd['LineItems'][] = array(
+             $dd['LineItems'][] = array(
                                 'Description'=>'Stripe Fee',
                                 'AccountCode'=>"$xero_fees_account",
                                 'UnitAmount'=>"$stripe_fee_n",
@@ -122,7 +125,44 @@ $xml_output = DFC_Helpers::arrayToXML($data_array);
 return $xml_output;
     
 }
-add_filter( 'woocommerce_xero_invoice_to_xml', 'dfc_xero_stripe_fee');
+add_filter( 'woocommerce_xero_invoice_to_xml', 'dfc_xero_stripe_fee', 11);
+
+
+
+// Make it easy to change settings without editing plugin files
+// Register and define the settings
+// Register and define the settings
+add_action('admin_init', 'dfc_xero_stripe_fee_setting', 11);
+function dfc_xero_stripe_fee_setting(){
+    
+    
+	register_setting(
+		'woocommerce_xero',                 // settings page
+		'wc_xero_dfc_stripe_fee_account'          // option name
+    );
+	
+	add_settings_field(
+		'wc_xero_dfc_stripe_fee_account',      // id
+		'Stripe Fee Account',              // setting title
+		'dfc_xero_stripe_fee_setting_input',    // display callback
+		'woocommerce_xero',                 // settings page
+		'wc_xero_settings'                  // settings section
+	);
+    
+
+}
+
+// Display and fill the form field
+function dfc_xero_stripe_fee_setting_input() {
+	$value = get_option( 'wc_xero_dfc_stripe_fee_account' , '');
+	
+	// echo the field
+	?>
+<input id='wc_xero_dfc_stripe_fee_account' name='wc_xero_dfc_stripe_fee_account'
+ type='text' value='<?php echo esc_attr( $value ); ?>' /> 
+    <p class="description">Code for Xero account to track Stripe Fees paid.</p>
+	<?php
+}
 
 
 // The XML Class (yep straight from XERO PHP)
