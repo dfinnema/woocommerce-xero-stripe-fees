@@ -19,7 +19,7 @@ if (!function_exists('untrailingslashit') || !defined('WP_PLUGIN_DIR')) {
 // Plugin Updater
 require 'plugin-update-checker/plugin-update-checker.php';
 $dfc_puc = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/dfinnema/WoocommerceXeroStripe',
+	'https://github.com/dfinnema/woocommerce-xero-stripe-fees',
 	__FILE__,
 	'woocommerce-xero-stripe-fees'
 );
