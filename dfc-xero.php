@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Woocommerce Xero Stripe Fees
-Plugin URI: https://github.com/dfinnema/WoocommerceXeroStripe
+Plugin URI: https://github.com/dfinnema/woocommerce-xero-stripe-fees
 Description: Calculates and adds the Stripe Fees to your Xero Invoice
 Author: IT Chef
 Author URI: https://itchef.nz
