@@ -21,7 +21,7 @@ require 'plugin-update-checker/plugin-update-checker.php';
 $dfc_puc = Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/dfinnema/WoocommerceXeroStripe',
 	__FILE__,
-	'Woocommerce-Xero-Stripe-Fees'
+	'woocommerce-xero-stripe-fees'
 );
 $dfc_puc->setBranch('release');
 
