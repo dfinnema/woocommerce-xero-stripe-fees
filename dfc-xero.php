@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: DFC Xero Stripe Fees
+Plugin Name: Woocommerce Xero Stripe Fees
 Plugin URI: https://github.com/dfinnema/WoocommerceXeroStripe
-Description: This adds changes to the WooCommerce Xero Extension. Requires WooCommerce 3.0 or higher
+Description: Calculates and adds the Stripe Fees to your Xero Invoice
 Author: IT Chef
 Author URI: https://itchef.nz
 */

@@ -6,6 +6,8 @@ This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero
 
   - Adds a Stripe Fee to the invoice send to Xero
   - NZ GST Support
+  
+  Note sending payments to Xero is not currently supported for Stripe Fees (nothing gets changed)
 
 ### Installation
 
