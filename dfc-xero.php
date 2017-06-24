@@ -6,12 +6,24 @@ Plugin URI: https://github.com/dfinnema/WoocommerceXeroStripe
 Description: Calculates and adds the Stripe Fees to your Xero Invoice
 Author: IT Chef
 Author URI: https://itchef.nz
+GitHub Plugin URI: https://github.com/dfinnema/WoocommerceXeroStripe
+
 */
 
 if (!function_exists('untrailingslashit') || !defined('WP_PLUGIN_DIR')) {
     // WordPress is probably not bootstrapped.
     exit;
 }
+
+
+// Plugin Updater
+require 'plugin-update-checker/plugin-update-checker.php';
+$dfc_puc = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/dfinnema/WoocommerceXeroStripe',
+	__FILE__,
+	'Woocommerce-Xero-Stripe-Fees'
+);
+$dfc_puc->setBranch('release');
 
 // Add Stripe Fees to Invoices send to Xero
 function dfc_xero_stripe_fee( $in ) {
