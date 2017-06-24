@@ -11,7 +11,7 @@ This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero
 
 ### Installation
 
-1. Download as .zip and add plugin using the upload function or add the .php file to ```wp-content/plugins/WoocommerceXeroStripe``` 
+1. Download as .zip and add plugin using the upload function or add the .php file to ```wp-content/plugins/woocommerce-xero-stripe-fees``` 
 2. Activate the plugin in Wordpress
 3. Add the Xero 'Stripe Fee' account code in ```Woocommerce > Xero``` options page (at the bottom)
 4. Test to see if it works (see debug below)
