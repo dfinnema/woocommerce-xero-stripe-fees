@@ -1,10 +1,14 @@
-=== Woocommerce Xero Stripe Fees ===
-Tags: woocommerce, xero, stripe
+=== Plugin Name ===
+Contributors: (this should be a list of wordpress.org userid's)
+Donate link: https://itchef.nz
+Tags: woocommerce,xero,stripe,fees
 Requires at least: 4.8
 Tested up to: 4.8
 Stable tag: 4.8
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This is a Plugin for Wordpress using Woocommerce Xero Extension and Stripe Gateway
+This is a Plugin for Wordpress using Woocommerce Xero Extension and Stripe Gateway. Adds a stripe fee to the invoices send to Xero
 
 == Description ==
 
@@ -14,13 +18,30 @@ This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/woocommerce-xero-stripe-fees` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Woocommerce->Xero screen to configure the plugin
+This section describes how to install the plugin and get it working.
 
+e.g.
+
+1. Upload `woocommerce-xero-stripe-fees.php` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Change settings under WooCommerce > Xero
 
 == Frequently Asked Questions ==
+
+= Can this be used with sending payments to Xero =
+
+Not at this time
 
 = I have a question or issue =
 
 Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
+
+== Changelog ==
+
+= 1.1 =
+* Rewrote the plugin
+* Options build into the WooCommerce Xero options page
+* Multiple Stripe Countries Supported with Tax Calculations
+
+= 1.0 =
+* Initial Release

@@ -1,11 +1,13 @@
-# WoocommerceXeroStripe
+# Woocommerce Xero Stripe Fees
 This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero** Extension and **Stripe**
+
+It Adds a stripe fee to your Xero invoices for easier reconciliation 
 
 **Please note this is a work in progress and probably has a lot of bugs in it. The code is quick and dirty so feel free to add / change to it.**
 ### Features
 
   - Adds a Stripe Fee to the invoice send to Xero
-  - NZ GST Support
+  - Multi Stripe Countries supported
   
   Note sending payments to Xero is not currently supported for Stripe Fees (nothing gets changed)
 
@@ -33,7 +35,7 @@ Please create a new issue if you are able to reproduce your bug
 
 Enable debug under ```Woocommerce > Xero```
 
-Logs are created in the ```wp-content/uploads/wc-logs``` the filename should start with **log** followed by a bunch of numbers with the extension of **.log**
+Logs are created in the ```wp-content/uploads/wc-logs``` the filename should start with **xero** followed by a bunch of numbers with the extension of **.log**
 
 ### Development
 
