@@ -1,4 +1,4 @@
-# WoocommerceXeroStripe
+# Woocommerce Xero Stripe Fees
 This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero** Extension and **Stripe**
 
 It Adds a stripe fee to your Xero invoices for easier reconciliation 
