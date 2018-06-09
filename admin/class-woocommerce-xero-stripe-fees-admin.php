@@ -426,6 +426,9 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
         // Change it back to a string (xml issues...)
         $data_array['Invoice']['Total'] = (string)$data_array['Invoice']['Total'];
         
+        // Add Extension Options before we change it back to XML
+        $data_array = apply_filters('wc_xero_stripe_fee_data_final', $data_array);
+        
         // Create XML
         $xml_output = DFC_XML::arrayToXML($data_array);
         
