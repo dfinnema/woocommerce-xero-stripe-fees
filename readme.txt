@@ -38,6 +38,17 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
+= 1.3.1 = 
+* Translations Updated
+
+= 1.3 =
+* Upped the WC version to 3.4.2
+* Added Filter wc_xero_stripe_fee_data_final
+
+= 1.2 = 
+* Stripe Meta Names Updated
+* Now Requires Stripe Gateway 4.1.3 or higher
+
 = 1.1 =
 * Rewrote the plugin
 * Options build into the WooCommerce Xero options page
