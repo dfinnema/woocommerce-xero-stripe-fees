@@ -9,7 +9,7 @@
  * Plugin Name:       WooCommerce Xero Stripe Fees
  * Plugin URI:        https://github.com/dfinnema/woocommerce-xero-stripe-fees
  * Description:       Extends the WooCommerce Xero Extension with Stripe Fees on Invoices
- * Version:           1.2
+ * Version:           1.3
  * Author:            IT Chef
  * Author URI:        https://itchef.nz
  * License:           GPL-2.0+
@@ -19,7 +19,7 @@
  * 
  * @woocommerce-extension
  * WC requires at least: 3.3.5
- * WC tested up to: 3.3.6
+ * WC tested up to: 3.4.2
  */
 
 // If this file is called directly, abort.
@@ -34,6 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
  *  FILTER wc_xero_stripe_fee_text              = changes the Xero Line description for the a Stripe Fee
  *  FILTER wc_xero_stripe_fee_not_found_text    = changes the ORDER NOTE Text when no stripe fee is found in the order
  *  FILTER wc_xero_stripe_fee_order_note        = changes the ORDER NOTE text that a stripe has been added to the order
+ *  FILTER wc_xero_stripe_fee_data_final        = Allows other plugins to make changes in an array form to the data before sending it back to the Xero Plugin
  *  
  */  
 
