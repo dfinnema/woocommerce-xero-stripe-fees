@@ -69,7 +69,7 @@ class Woocommerce_Xero_Stripe_Fees {
 	public function __construct() {
 
 		$this->plugin_name = 'woocommerce-xero-stripe-fees';
-		$this->version = '1.3.1';
+		$this->version = '1.3.2';
 
 		$this->load_dependencies();
 		$this->set_locale();

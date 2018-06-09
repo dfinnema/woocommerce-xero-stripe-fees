@@ -164,6 +164,21 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
             'wc_xero_settings'                  // settings section
         );
 
+	    // Disable Stripe Fees, in case the user wishes ot use another extension.
+	    register_setting(
+		    'woocommerce_xero',                 // settings page
+		    'wc_xero_dfc_stripe_fee_enabled'          // option name
+	    );
+
+
+	    add_settings_field(
+		    'wc_xero_dfc_stripe_fee_enabled',      // id
+		    __('Add a Stripe Fee?', 'woocommerce-xero-stripe-fees'),              // setting title
+		    array( $this, 'enabled_input' ),    // display callback
+		    'woocommerce_xero',                 // settings page
+		    'wc_xero_settings'                  // settings section
+	    );
+
     }
     
     /**
@@ -182,6 +197,29 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
         <p class="description"><?php _e('Code for Xero account to track Stripe Fees paid.', 'woocommerce-xero-stripe-fees'); ?></p>
         <?php
     }
+
+	/**
+	 * The STRIPE FEE Enabled option
+	 *
+	 * Outputs the Stripe Enabled Checkbox Field
+	 *
+	 * @since    1.3.2
+	 */
+	public function enabled_input() {
+
+	    $option = get_option('wc_xero_dfc_stripe_fee_enabled');
+
+	    if ('on' == $option) {
+	        $option = 'checked';
+        } else {
+	        $option = '';
+        }
+
+		?>
+        <input type="checkbox" name="wc_xero_dfc_stripe_fee_enabled" id="wc_xero_dfc_stripe_fee_enabled" <?php echo($option); ?> />
+        <p class="description"><?php _e('Add Stripe Fees to Xero Invoices?', 'woocommerce-xero-stripe-fees'); ?></p>
+		<?php
+	}
     
     /**
 	 * The Xero Country field outputed as HTML 
@@ -286,145 +324,154 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
            return $xml_input;
         }
 
+	    // Add support for Product Accounts, without adding stripe fees
+	    $option_enabled = get_option('wc_xero_dfc_stripe_fee_enabled');
+	    if ('on' == $option_enabled) {
 
-        // Not using Stripe, lets abort
-        if ('stripe' !== get_post_meta( $order_id, '_payment_method', true ) ) {
+		    // Not using Stripe, lets abort
+		    if ( 'stripe' !== get_post_meta( $order_id, '_payment_method', true ) ) {
 
-            // DEBUG
-            $this->log("Abort Stripe Fee -> Payment Method (id: ".$order_id."): ".get_post_meta( $order_id, '_payment_method', true ));
+			    // DEBUG
+			    $this->log( "Abort Stripe Fee -> Payment Method (id: " . $order_id . "): " . get_post_meta( $order_id,
+					    '_payment_method',
+					    true ) );
 
-           return $xml_input;
-        }
+			    return $xml_input;
+		    }
 
-        // Has the payment been proccessed? (to get the Stripe Fee)
-        $stripe_fee = get_post_meta( $order_id , '_stripe_fee', true );
+		    // Has the payment been proccessed? (to get the Stripe Fee)
+		    $stripe_fee = get_post_meta( $order_id, '_stripe_fee', true );
 
-        // No fee found? lets abort
-        if (empty($stripe_fee)) {
-            
-            // Add Order Note
-            $this->add_order_note($order_id,
-                                  apply_filters( 'wc_xero_stripe_fee_not_found_text' , __('ERROR: No Stripe Fee found for order','woocommerce-xero-stripe-fees'))
-                                 );
+		    // No fee found? lets abort
+		    if ( empty( $stripe_fee ) ) {
 
-            // DEBUG
-            $this->log("Abort Stripe Fee -> No Fee Found");
+			    // Add Order Note
+			    $this->add_order_note( $order_id,
+				    apply_filters( 'wc_xero_stripe_fee_not_found_text',
+					    __( 'ERROR: No Stripe Fee found for order', 'woocommerce-xero-stripe-fees' ) )
+			    );
 
-           return $xml_input;
-        }
+			    // DEBUG
+			    $this->log( "Abort Stripe Fee -> No Fee Found" );
 
-        // Keep Orginal fee for changing the totals later
-        $stripe_fee_org = $stripe_fee;
-        
-        // Stripe Fee Description (translation and DEV friendly)
-        $stripe_fee_txt = apply_filters( 'wc_xero_stripe_fee_text' , __('Stripe Fee','woocommerce-xero-stripe-fees'));        
-        
-        // Get Stripe Country
-        $stripe_country = get_option('wc_xero_dfc_stripe_fee_country', '');
-        
-        // Defaults to NO TAX for the stripe fees
-        $stripe_fee_includes_tax=false;
-        $stripe_fee_tax_code='NONE';
-        
-        // Stripe Fee TAX Calculations
-        switch($stripe_country) {
-                
-            case "AU":
-                // Australia, Remove 10% GST from the Stripe Fee 
-                $stripe_fee = $stripe_fee / 1.1;
-                $stripe_fee_tax_code = "INPUT";
-                $stripe_fee_includes_tax=true;
-                break;
-                
-            case "NZ":
-                // New Zealand, Remove 15% GST from the Stripe Fee 
-                $stripe_fee = $stripe_fee - (( $stripe_fee * 3 ) / 23 );
-                $stripe_fee_tax_code = "INPUT2";
-                $stripe_fee_includes_tax=true;
-                break;
-                
-            case "US":
-                // USA, Leave it as is 
-                break;
-                
-            case "CA":
-                // Canada, Leave it as is 
-                break;
-                
-            case "EU":
-                // European Union, Leave it as is 
-                break;
-                
-            case "IE":
-                // Ireland, Remove 23% GST from the Stripe Fee 
-                $stripe_fee = $stripe_fee / 1.23;
-                $stripe_fee_tax_code = "INPUT2";
-                $stripe_fee_includes_tax=true;
-                break;
-                
-            case "XX":
-                // Other, Leave it as is 
-                break;
+			    return $xml_input;
+		    }
 
-        }
-        
-        // DEBUG
-        $this->log('> '.$stripe_fee_txt.': '.$stripe_fee_org. ' (GST/VAT ex. '.$stripe_fee.')');
+		    // Keep Orginal fee for changing the totals later
+		    $stripe_fee_org = $stripe_fee;
 
-        // Turn the stripe fee negative (to remove from the total)
-        $stripe_fee_n = 0-$stripe_fee;
+		    // Stripe Fee Description (translation and DEV friendly)
+		    $stripe_fee_txt = apply_filters( 'wc_xero_stripe_fee_text',
+			    __( 'Stripe Fee', 'woocommerce-xero-stripe-fees' ) );
 
-        
-        // Add the Stripe Fee into the Line Items
-        
-        //DEBUG
-        $this->log('RAW: '.json_encode($data_array['Invoice']['LineItems']));
-        
-        // Setup the Group
-        $group = array();
-        
-        // How many items to we have in the order?
-        $order_items_i = count($data_array['Invoice']['LineItems']);
-        
-        // If more then 1, use the group method, else just add.
-        if (1 < $order_items_i) {
-            // Split the products
-            foreach($products['LineItem'] as $item) { 
-                $group[] = $item;
-            }
-        } else {
-            // Just add the product (just 1) to the group
-            $group[] = $data_array['Invoice']['LineItems'];
-        }
+		    // Get Stripe Country
+		    $stripe_country = get_option( 'wc_xero_dfc_stripe_fee_country', '' );
 
-        // Create the Stripe Fee
-        $stripe_line = array(
-                        'Description'=>"$stripe_fee_txt",
-                        'AccountCode'=>"$xero_fees_account",
-                        'UnitAmount'=>"$stripe_fee_n",
-                        'Quantity'=>'1',
-                        'TaxType'=>"$stripe_fee_tax_code"
-                    );
+		    // Defaults to NO TAX for the stripe fees
+		    $stripe_fee_includes_tax = false;
+		    $stripe_fee_tax_code     = 'NONE';
 
-        // Add the Stripe Fee
-        $group[] = $stripe_line;
+		    // Stripe Fee TAX Calculations
+		    switch ( $stripe_country ) {
 
-        // Add the Line Item per Array (for XML Keys) (if more then 1 product)
-        if (1 < $order_items_i) {
-            $group = array('LineItem'=>$group);
-        }
-        
-        // Merge it back into the main Data Stream
-        $data_array['Invoice']['LineItems'] = $group;
-        
-        //DEBUG
-        $this->log('MERGED: '.json_encode($data_array['Invoice']['LineItems']));
-        
-        // Change the Total
-        $data_array['Invoice']['Total'] = $data_array['Invoice']['Total'] - $stripe_fee_org;
+			    case "AU":
+				    // Australia, Remove 10% GST from the Stripe Fee
+				    $stripe_fee              = $stripe_fee / 1.1;
+				    $stripe_fee_tax_code     = "INPUT";
+				    $stripe_fee_includes_tax = true;
+				    break;
 
-        // Change it back to a string (xml issues...)
-        $data_array['Invoice']['Total'] = (string)$data_array['Invoice']['Total'];
+			    case "NZ":
+				    // New Zealand, Remove 15% GST from the Stripe Fee
+				    $stripe_fee              = $stripe_fee - ( ( $stripe_fee * 3 ) / 23 );
+				    $stripe_fee_tax_code     = "INPUT2";
+				    $stripe_fee_includes_tax = true;
+				    break;
+
+			    case "US":
+				    // USA, Leave it as is
+				    break;
+
+			    case "CA":
+				    // Canada, Leave it as is
+				    break;
+
+			    case "EU":
+				    // European Union, Leave it as is
+				    break;
+
+			    case "IE":
+				    // Ireland, Remove 23% GST from the Stripe Fee
+				    $stripe_fee              = $stripe_fee / 1.23;
+				    $stripe_fee_tax_code     = "INPUT2";
+				    $stripe_fee_includes_tax = true;
+				    break;
+
+			    case "XX":
+				    // Other, Leave it as is
+				    break;
+
+		    }
+
+		    // DEBUG
+		    $this->log( '> ' . $stripe_fee_txt . ': ' . $stripe_fee_org . ' (GST/VAT ex. ' . $stripe_fee . ')' );
+
+		    // Turn the stripe fee negative (to remove from the total)
+		    $stripe_fee_n = 0 - $stripe_fee;
+
+
+		    // Add the Stripe Fee into the Line Items
+
+		    //DEBUG
+		    $this->log( 'RAW: ' . json_encode( $data_array['Invoice']['LineItems'] ) );
+
+		    // Setup the Group
+		    $group = array();
+
+		    // How many items to we have in the order?
+		    $order_items_i = count( $data_array['Invoice']['LineItems'] );
+
+		    // If more then 1, use the group method, else just add.
+		    if ( 1 < $order_items_i ) {
+			    // Split the products
+			    foreach ( $products['LineItem'] as $item ) {
+				    $group[] = $item;
+			    }
+		    } else {
+			    // Just add the product (just 1) to the group
+			    $group[] = $data_array['Invoice']['LineItems'];
+		    }
+
+		    // Create the Stripe Fee
+		    $stripe_line = array(
+			    'Description' => "$stripe_fee_txt",
+			    'AccountCode' => "$xero_fees_account",
+			    'UnitAmount'  => "$stripe_fee_n",
+			    'Quantity'    => '1',
+			    'TaxType'     => "$stripe_fee_tax_code"
+		    );
+
+		    // Add the Stripe Fee
+		    $group[] = $stripe_line;
+
+		    // Add the Line Item per Array (for XML Keys) (if more then 1 product)
+		    if ( 1 < $order_items_i ) {
+			    $group = array( 'LineItem' => $group );
+		    }
+
+		    // Merge it back into the main Data Stream
+		    $data_array['Invoice']['LineItems'] = $group;
+
+		    //DEBUG
+		    $this->log( 'MERGED: ' . json_encode( $data_array['Invoice']['LineItems'] ) );
+
+		    // Change the Total
+		    $data_array['Invoice']['Total'] = $data_array['Invoice']['Total'] - $stripe_fee_org;
+
+		    // Change it back to a string (xml issues...)
+		    $data_array['Invoice']['Total'] = (string) $data_array['Invoice']['Total'];
+
+	    }
         
         // Add Extension Options before we change it back to XML
         $data_array = apply_filters('wc_xero_stripe_fee_data_final', $data_array);
@@ -460,10 +507,13 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
         //throw new Exception('DEBUG');
         
         // Add Order Note
-        $this->add_order_note($order_id, apply_filters( 'wc_xero_stripe_fee_order_note' , 
-                                        sprintf(esc_html__('Stripe Fee (%s) added to Xero invoice','woocommerce-xero-stripe-fees'), round($stripe_fee_org,2)
-                                               )));
-        
+	    if ('on' == $option_enabled) {
+		    $this->add_order_note( $order_id,
+			    apply_filters( 'wc_xero_stripe_fee_order_note',
+				    sprintf( esc_html__( 'Stripe Fee (%s) added to Xero invoice', 'woocommerce-xero-stripe-fees' ),
+					    round( $stripe_fee_org, 2 )
+				    ) ) );
+	    }
 
         // Give it back to Woocommerce Xero Extension to Send
         return $xml_output;

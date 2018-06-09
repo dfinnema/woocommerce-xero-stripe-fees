@@ -38,6 +38,10 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
+= 1.3.2 =
+* Added Option to not add Stripe Fees
+* Tweak Skip some functions with certain extensions
+
 = 1.3.1 = 
 * Translations Updated
 
