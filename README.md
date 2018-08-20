@@ -24,12 +24,21 @@ This Plugin requires the following plugins to be active in Wordpress
 
 | Plugin | Link |
 | ------ | ------ |
-| Woocommerce 3.0 or above | https://woocommerce.com |
-| Woocommerce Xero (tested with 1.7.9) | https://woocommerce.com/products/xero/ |
+| Woocommerce 3.4 or above | https://woocommerce.com |
+| Woocommerce Xero (tested with 1.7.13) | https://woocommerce.com/products/xero/ |
 
 ### Bugs
 
 Please create a new issue if you are able to reproduce your bug
+
+### Troubleshooting
+
+Having issues with invoices being send to Xero? 
+1. Deactivate this plugin 
+2. Try a test order and see if that gets send ot Xero
+3. If you get an error its something unrelated to this plugin
+4. If it works please enable the debug option and try another test order
+5. Submit your woocommerce xero logs as an issue on github
 
 ### Debug
 
@@ -43,6 +52,7 @@ Want to contribute? Great!
 
 Feel free to post an issue or create a pull request. 
 
-### Are you finding this usefull?
+### Are you finding this useful?
 
-Using this plugin or some of the code? Feeling generous and want to say thanks? You can <a href='https://ko-fi.com/A6552UEK' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+Using this plugin or some of the code? Feeling generous and want to say thanks? 
+You can <a href='https://ko-fi.com/A6552UEK' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>

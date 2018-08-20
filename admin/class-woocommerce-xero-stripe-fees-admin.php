@@ -53,52 +53,6 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		$this->version = $version;
 
 	}
-
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.1.0
-	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Woocommerce_Xero_Stripe_Fees_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Woocommerce_Xero_Stripe_Fees_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		//wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/woocommerce-xero-stripe-fees-admin.css', array(), $this->version, 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.1.0
-	 */
-	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Woocommerce_Xero_Stripe_Fees_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Woocommerce_Xero_Stripe_Fees_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		//wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/woocommerce-xero-stripe-fees-admin.js', array( 'jquery' ), $this->version, false );
-
-	}
     
     /**
 	 * Display a notice when incompatibilities are found.
@@ -168,15 +122,6 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 	    register_setting(
 		    'woocommerce_xero',                 // settings page
 		    'wc_xero_dfc_stripe_fee_enabled'          // option name
-	    );
-
-
-	    add_settings_field(
-		    'wc_xero_dfc_stripe_fee_enabled',      // id
-		    __('Add a Stripe Fee?', 'woocommerce-xero-stripe-fees'),              // setting title
-		    array( $this, 'enabled_input' ),    // display callback
-		    'woocommerce_xero',                 // settings page
-		    'wc_xero_settings'                  // settings section
 	    );
 
     }
@@ -367,6 +312,10 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		    // Get Stripe Country
 		    $stripe_country = get_option( 'wc_xero_dfc_stripe_fee_country', '' );
 
+		    // Are taxes enabled in WooCommerce?
+            $woo_taxes_enabled = \wc_tax_enabled();
+		    $this->log( '> WooCommerce Tax Calculations: '. ($woo_taxes_enabled ? 'Enabled' : 'Disabled') );
+
 		    // Defaults to NO TAX for the stripe fees
 		    $stripe_fee_includes_tax = false;
 		    $stripe_fee_tax_code     = 'NONE';
@@ -375,17 +324,25 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		    switch ( $stripe_country ) {
 
 			    case "AU":
-				    // Australia, Remove 10% GST from the Stripe Fee
-				    $stripe_fee              = $stripe_fee / 1.1;
-				    $stripe_fee_tax_code     = "INPUT";
-				    $stripe_fee_includes_tax = true;
+				    if (false == $woo_taxes_enabled) {
+					    $stripe_fee_tax_code = "EXEMPTEXPENSES";
+				    } else {
+					    $stripe_fee_tax_code     = "INPUT";
+					    // Australia, Remove 10% GST from the Stripe Fee (gets added later)
+					    $stripe_fee              = $stripe_fee / 1.1;
+					    $stripe_fee_includes_tax = true;
+                    }
+
 				    break;
 
 			    case "NZ":
-				    // New Zealand, Remove 15% GST from the Stripe Fee
-				    $stripe_fee              = $stripe_fee - ( ( $stripe_fee * 3 ) / 23 );
-				    $stripe_fee_tax_code     = "INPUT2";
-				    $stripe_fee_includes_tax = true;
+				    if (true == $woo_taxes_enabled) {
+					    $stripe_fee_tax_code     = "INPUT2";
+					    // New Zealand, Remove 15% GST from the Stripe Fee (gets added later)
+					    $stripe_fee              = $stripe_fee - ( ( $stripe_fee * 3 ) / 23 );
+					    $stripe_fee_includes_tax = true;
+				    }
+
 				    break;
 
 			    case "US":
@@ -401,10 +358,14 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 				    break;
 
 			    case "IE":
-				    // Ireland, Remove 23% GST from the Stripe Fee
-				    $stripe_fee              = $stripe_fee / 1.23;
-				    $stripe_fee_tax_code     = "INPUT2";
-				    $stripe_fee_includes_tax = true;
+
+				    if (true == $woo_taxes_enabled) {
+					    $stripe_fee_tax_code     = "INPUT2";
+					    // Ireland, Remove 23% GST from the Stripe Fee (gets added later)
+					    $stripe_fee              = $stripe_fee / 1.23;
+					    $stripe_fee_includes_tax = true;
+				    }
+
 				    break;
 
 			    case "XX":
@@ -414,7 +375,7 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		    }
 
 		    // DEBUG
-		    $this->log( '> ' . $stripe_fee_txt . ': ' . $stripe_fee_org . ' (GST/VAT ex. ' . $stripe_fee . ')' );
+		    $this->log( '> ' . $stripe_fee_txt . ': ' . $stripe_fee_org . ' (GST/VAT ex. ' . round($stripe_fee , 2 ) . ')' );
 
 		    // Turn the stripe fee negative (to remove from the total)
 		    $stripe_fee_n = 0 - $stripe_fee;
