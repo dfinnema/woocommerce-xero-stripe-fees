@@ -275,7 +275,11 @@ class Woocommerce_Xero_Stripe_Fees {
 					if ($each_plugin == $this_plugin) {
 						// if this plugin is in the updated plugins.
 						// set transient to let it run later.
+<<<<<<< HEAD
 						set_transient('woocommerce_xero_stripe_fees_updated', 1);
+=======
+						set_transient('woocommerce_xero_stripe_fees_updated', 10);
+>>>>>>> master
 					}
 				}
 				unset($each_plugin);
