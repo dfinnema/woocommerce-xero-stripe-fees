@@ -69,12 +69,17 @@ class Woocommerce_Xero_Stripe_Fees {
 	public function __construct() {
 
 		$this->plugin_name = 'woocommerce-xero-stripe-fees';
-		$this->version = '1.3.3';
+		$this->version = '1.3.4';
 
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+
+		// Update Options on pLugin Update
+		add_action('plugins_loaded', array( $this, 'stripe_fee_update_options' ) );
+		add_action('upgrader_process_complete', array( $this, 'stripe_fee_updated' ), 10, 2);
+
 
 	}
 
@@ -250,6 +255,52 @@ class Woocommerce_Xero_Stripe_Fees {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Runs when a Plugin update has been completed. Checks if it is this plugin and sets a transient
+	 * @param WP_Upgrader $upgrader_object
+	 * @param $hook_extra
+	 * @since 1.3.4
+	 */
+	public function stripe_fee_updated(\WP_Upgrader $upgrader_object, $hook_extra)
+	{
+		if (is_array($hook_extra) && array_key_exists('action', $hook_extra) && array_key_exists('type', $hook_extra) && array_key_exists('plugins', $hook_extra)) {
+			// check first that array contain required keys to prevent undefined index error.
+			if ($hook_extra['action'] == 'update' && $hook_extra['type'] == 'plugin' && is_array($hook_extra['plugins']) && !empty($hook_extra['plugins'])) {
+				// if this action is update plugin.
+				$this_plugin = plugin_basename( \getfile_woocommerce_xero_stripe_fees() );
+
+				foreach ($hook_extra['plugins'] as $each_plugin) {
+					if ($each_plugin == $this_plugin) {
+						// if this plugin is in the updated plugins.
+						// set transient to let it run later.
+						set_transient('woocommerce_xero_stripe_fees_updated', 1);
+					}
+				}
+				unset($each_plugin);
+			}
+		}
+	}
+
+
+	/**
+	 * Runs when a transient is detected and applies options update for default values for new options
+	 * @since 1.3.4
+	 */
+	public function stripe_fee_update_options()
+	{
+		if (get_transient('woocommerce_xero_stripe_fees_updated') && current_user_can('manage_options')) {
+
+			// update code here.
+			if (false == get_option( 'wc_xero_dfc_stripe_fee_account') ) {
+				// Ensure the default is set
+				add_option( 'wc_xero_dfc_stripe_fee_account', 'on' );
+			}
+
+			// delete transient.
+			delete_transient('woocommerce_xero_stripe_fees_updated');
+		}
 	}
 
 }
