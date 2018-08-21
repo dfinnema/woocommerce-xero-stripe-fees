@@ -293,9 +293,9 @@ class Woocommerce_Xero_Stripe_Fees {
 		if (get_transient('woocommerce_xero_stripe_fees_updated') && current_user_can('manage_options')) {
 
 			// update code here.
-			if (false == get_option( 'wc_xero_dfc_stripe_fee_account') ) {
+			if (false == get_option( 'wc_xero_dfc_stripe_fee_enabled') ) {
 				// Ensure the default is set
-				add_option( 'wc_xero_dfc_stripe_fee_account', 'on' );
+				add_option( 'wc_xero_dfc_stripe_fee_enabled', 'on' );
 			}
 
 			// delete transient.
