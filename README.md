@@ -35,7 +35,7 @@ Please create a new issue if you are able to reproduce your bug
 
 Having issues with invoices being send to Xero? 
 1. Deactivate this plugin 
-2. Try a test order and see if that gets send ot Xero
+2. Try a test order and see if that gets send to Xero
 3. If you get an error its something unrelated to this plugin
 4. If it works please enable the debug option and try another test order
 5. Submit your woocommerce xero logs as an issue on github

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Xero Stripe Fees\n"
-"POT-Creation-Date: 2018-08-20 11:22+1200\n"
-"PO-Revision-Date: 2018-08-20 11:23+1200\n"
+"POT-Creation-Date: 2018-08-21 22:32+1200\n"
+"PO-Revision-Date: 2018-08-21 22:32+1200\n"
 "Last-Translator: Dennis Finnema <dennis@itchef.nz>\n"
 "Language-Team: Dennis Finnema <dennis@itchef.nz>\n"
 "Language: nl_NL\n"
@@ -37,64 +37,68 @@ msgstr "Stripe Kosten Rekening"
 msgid "Stripe Country"
 msgstr "Stripe Land"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:142
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:129
+msgid "Calculate Stripe fees"
+msgstr "Stripe kosten berekenen"
+
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:150
 msgid "Code for Xero account to track Stripe Fees paid."
 msgstr "Rekening Code voor Xero voor het bijhouden van Stripe Kosten betaald."
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:165
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:173
 msgid "Add Stripe Fees to Xero Invoices?"
 msgstr "Stripe Kosten toevoegen voor Xero facturen?"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:204
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:212
 msgid "Select Stripe Country"
 msgstr "Selecteer Stripe land"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:205
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:213
 msgid "Australia"
 msgstr "Australië"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:206
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:214
 msgid "New Zealand"
 msgstr "Nieuw-Zeeland"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:207
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:215
 msgid "United States of America"
 msgstr "Verenigde Staten van Amerika"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:208
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:216
 msgid "Canada"
 msgstr "Canada"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:209
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:217
 msgid "European Union"
 msgstr "Europese Unie"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:210
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:218
 msgid "Ireland"
 msgstr "Ierland"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:211
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:219
 msgid "Other (NO TAX Calculations)"
 msgstr "Andere (GEEN belasting berekeningen)"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:213
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:221
 msgid "The country you have registered with Stripe."
 msgstr "Het land dat u hebt geregistreerd met Stripe."
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:296
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:304
 msgid "ERROR: No Stripe Fee found for order"
 msgstr "FOUT: Kan geen Stripe kosten vinden voor de order"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:310
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:318
 msgid "Stripe Fee"
 msgstr "Stripe Kosten"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:482
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:485
 #, php-format
 msgid "Stripe Fee (%s) added to Xero invoice"
 msgstr "Stripe kosten (%s) toegevoegd aan Xero factuur"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:554
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:557
 msgid "Settings"
 msgstr "Instellingen"
 
