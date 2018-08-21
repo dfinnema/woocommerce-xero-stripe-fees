@@ -124,6 +124,14 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		    'wc_xero_dfc_stripe_fee_enabled'          // option name
 	    );
 
+	    add_settings_field(
+		    'wc_xero_dfc_stripe_fee_enabled',      // id
+		    __('Calculate Stripe fees', 'woocommerce-xero-stripe-fees'),              // setting title
+		    array( $this, 'enabled_input' ),    // display callback
+		    'woocommerce_xero',                 // settings page
+		    'wc_xero_settings'                  // settings section
+	    );
+
     }
     
     /**
@@ -135,7 +143,7 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 	 */
     public function fees_input() {
         
-        $value = get_option( 'wc_xero_dfc_stripe_fee_account' , '');
+            $value = get_option( 'wc_xero_dfc_stripe_fee_account' , '');
         // echo the field
         ?>
         <input id='wc_xero_dfc_stripe_fee_account' name='wc_xero_dfc_stripe_fee_account' type='text' value='<?php echo esc_attr( $value ); ?>' /> 
@@ -432,7 +440,10 @@ class Woocommerce_Xero_Stripe_Fees_Admin {
 		    // Change it back to a string (xml issues...)
 		    $data_array['Invoice']['Total'] = (string) $data_array['Invoice']['Total'];
 
-	    }
+	    } else {
+		    // DEBUG
+		    $this->log(" > Stripe Fee disabled");
+        }
         
         // Add Extension Options before we change it back to XML
         $data_array = apply_filters('wc_xero_stripe_fee_data_final', $data_array);

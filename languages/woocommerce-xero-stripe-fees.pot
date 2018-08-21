@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Xero Stripe Fees\n"
-"POT-Creation-Date: 2018-08-20 11:22+1200\n"
+"POT-Creation-Date: 2018-08-21 22:32+1200\n"
 "PO-Revision-Date: 2017-06-26 17:14+1200\n"
 "Last-Translator: Dennis Finnema <dennis@itchef.nz>\n"
 "Language-Team: Dennis Finnema <dennis@itchef.nz>\n"
@@ -35,64 +35,68 @@ msgstr ""
 msgid "Stripe Country"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:142
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:129
+msgid "Calculate Stripe fees"
+msgstr ""
+
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:150
 msgid "Code for Xero account to track Stripe Fees paid."
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:165
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:173
 msgid "Add Stripe Fees to Xero Invoices?"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:204
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:212
 msgid "Select Stripe Country"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:205
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:213
 msgid "Australia"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:206
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:214
 msgid "New Zealand"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:207
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:215
 msgid "United States of America"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:208
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:216
 msgid "Canada"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:209
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:217
 msgid "European Union"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:210
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:218
 msgid "Ireland"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:211
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:219
 msgid "Other (NO TAX Calculations)"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:213
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:221
 msgid "The country you have registered with Stripe."
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:296
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:304
 msgid "ERROR: No Stripe Fee found for order"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:310
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:318
 msgid "Stripe Fee"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:482
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:485
 #, php-format
 msgid "Stripe Fee (%s) added to Xero invoice"
 msgstr ""
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:554
+#: admin/class-woocommerce-xero-stripe-fees-admin.php:557
 msgid "Settings"
 msgstr ""
 
