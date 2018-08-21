@@ -295,7 +295,7 @@ class Woocommerce_Xero_Stripe_Fees {
 			// update code here.
 			if (false == get_option( 'wc_xero_dfc_stripe_fee_enabled') ) {
 				// Ensure the default is set
-				add_option( 'wc_xero_dfc_stripe_fee_enabled', 'on' );
+				update_option( 'wc_xero_dfc_stripe_fee_enabled', 'on' );
 			}
 
 			// delete transient.
