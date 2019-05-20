@@ -22,8 +22,6 @@ class Xero_Options {
 	 */
 	public function __construct() {
 
-	    error_log('Boot');
-
 		add_action( 'admin_init', array( $this , 'settings_page' ), 11);
 	}
 

@@ -23,8 +23,6 @@ class STRIPE {
 			$payment_captured = get_post_meta( $order_id , '_stripe_charge_captured',true);
 			$payment_fee_amount = get_post_meta( $order_id , '_stripe_fee',true);
 
-			error_log(print_r($payment_fee_amount,1));
-
 			// Make sure the payment has been captured, otherwise we dont know the amount
 			if ('yes' == $payment_captured) {
 

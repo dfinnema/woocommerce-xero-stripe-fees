@@ -134,21 +134,47 @@ class XEROSTRIPEFEES {
 
 						// Make sure we have line items
 						if (array_key_exists(XERO_Naming::LINEITEMS,$invoice) && !empty($invoice[XERO_Naming::LINEITEMS])) {
-							if (isset($invoice[XERO_Naming::LINEITEMS][XERO_Naming::LINEITEM])) {
 
-								$this->log(' + Line Items Found');
+							if (array_key_exists(XERO_Naming::LINEITEM,$invoice[XERO_Naming::LINEITEMS])) {
+
+								$this->log(' + Line Item Found');
 								$line_items = $invoice[XERO_Naming::LINEITEMS][XERO_Naming::LINEITEM];
 								$x = count($line_items);
 
-								// Add Line Item for the Stripe Fee
-								$line_items[$x] = array(
-									XERO_Naming::DESCRIPTION    => __('Stripe Fee','woocommerce-xero-stripe-fees'),
-									XERO_Naming::ACCOUNTCODE    => $stripe_fee_account_code,
-									XERO_Naming::UNITAMOUNT     => $stripe_fee_negative,
-									XERO_Naming::QUANTITY       => 1,
-									XERO_Naming::TAXTYPE        => 'NONE',
-									XERO_Naming::TAXAMOUNT      => 0,
-								);
+								// Check if we have just one item, otherwise the array goes funny and will not work for Xero
+								if (array_key_exists(XERO_Naming::DESCRIPTION, $line_items ) ) {
+									//Only have 1 item here
+									$this->log(' + Single Item');
+
+									// Single Item, ensure the count var is set to 1 to effect the stripe fee line only
+									$x = 1;
+
+									$line_items_tmp = array();
+									$line_items_tmp[0] = $line_items;
+									$line_items_tmp[1] = array(
+										XERO_Naming::DESCRIPTION    => __('Stripe Fee','woocommerce-xero-stripe-fees'),
+										XERO_Naming::ACCOUNTCODE    => $stripe_fee_account_code,
+										XERO_Naming::UNITAMOUNT     => $stripe_fee_negative,
+										XERO_Naming::QUANTITY       => 1,
+										XERO_Naming::TAXTYPE        => 'NONE',
+										XERO_Naming::TAXAMOUNT      => 0,
+									);
+
+									$line_items = $line_items_tmp;
+
+								} else {
+
+									// Add Line Item for the Stripe Fee
+									$line_items[$x] = array(
+										XERO_Naming::DESCRIPTION    => __('Stripe Fee','woocommerce-xero-stripe-fees'),
+										XERO_Naming::ACCOUNTCODE    => $stripe_fee_account_code,
+										XERO_Naming::UNITAMOUNT     => $stripe_fee_negative,
+										XERO_Naming::QUANTITY       => 1,
+										XERO_Naming::TAXTYPE        => 'NONE',
+										XERO_Naming::TAXAMOUNT      => 0,
+									);
+
+								}
 
 								// Remove Tax Type and set tax amount when  Calculating Taxes
 								if (true == $woo_taxes_enabled) {
@@ -227,6 +253,9 @@ class XEROSTRIPEFEES {
 
 			// Add the Fees, uses a filter for easy expansion options
 			$xml_array = apply_filters('woocommerce_xero_stripe_fees_array', $xml_array , $order_id );
+
+			wp_die('test');
+
 			if (false === $xml_array || !is_array($xml_array) || empty($xml_array)) {
 				$this->log('Failed to Update Data');
 				return $xml;
