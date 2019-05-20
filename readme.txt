@@ -38,7 +38,7 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
-= 2.0 =
+= 2.0.1 =
 * Entire Codebase re-written for faster and better performance
 * Ensure you test before updating if using any hooks associated with this plugin as these have changed
 
