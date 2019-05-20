@@ -253,9 +253,7 @@ class XEROSTRIPEFEES {
 
 			// Add the Fees, uses a filter for easy expansion options
 			$xml_array = apply_filters('woocommerce_xero_stripe_fees_array', $xml_array , $order_id );
-
-			wp_die('test');
-
+			
 			if (false === $xml_array || !is_array($xml_array) || empty($xml_array)) {
 				$this->log('Failed to Update Data');
 				return $xml;
