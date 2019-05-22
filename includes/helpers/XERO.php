@@ -1,13 +1,14 @@
 <?php
-
-
 namespace XEROSTRIPEFEES;
-
 
 /* Ensure WP is Running */
 defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );
 
-class XERO_Naming {
+/**
+ * Class XERO
+ * @package XEROSTRIPEFEES
+ */
+class XERO {
 
 	// XML
 	const XML_URL = 'Url';

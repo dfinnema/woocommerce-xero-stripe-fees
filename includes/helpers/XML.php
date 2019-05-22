@@ -1,8 +1,6 @@
 <?php
 
-
 namespace XEROSTRIPEFEES;
-
 
 use LaLit\Array2XML;
 use LaLit\XML2Array;
@@ -10,6 +8,12 @@ use LaLit\XML2Array;
 /* Ensure WP is Running */
 defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );
 
+/**
+ * Class XML
+ *
+ * @credit https://github.com/digitickets/lalit
+ * @package XEROSTRIPEFEES
+ */
 class XML {
 
 	/**
@@ -44,7 +48,7 @@ class XML {
 			// Filter XML
 			$xml_new = self::filter_output($xml_new,$output_filter);
 			if (empty($xml_new)) {
-				error_log('Error Has occurred with filtering');
+				xerostripefees()->log('Error Has occurred with filtering');
 				return false;
 			}
 

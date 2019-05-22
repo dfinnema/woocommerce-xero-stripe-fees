@@ -22,7 +22,7 @@ class WOO {
 	public static function has_stripe_payment_method( $order_id ) {
 		$order = self::get_order( $order_id );
 		if (false == $order) {
-			error_log('ERROR: getting order');
+			xerostripefees()->log('ERROR: getting order for checking payment method');
 			return false;
 		}
 
@@ -47,10 +47,6 @@ class WOO {
 		return false;
 	}
 
-	public static function get_tax_amount() {
-		$base_country = WC()->countries->get_base_country();
-	}
-
 	/**
 	 * Add private order note
 	 * Creates a new note for the order id
@@ -63,5 +59,4 @@ class WOO {
 		$order      = wc_get_order( $order_id );
 		$comment_id = $order->add_order_note( $note );
 	}
-
 }

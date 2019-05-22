@@ -85,7 +85,6 @@ class STRIPE {
 				if (true == $woo_taxes_enabled) {
 					// Australia, Remove 10% GST from the Stripe Fee (gets added later)
 					$stripe_fee              = $stripe_fee / 1.1;
-					$stripe_fee_includes_tax = true;
 				}
 
 				break;
@@ -95,7 +94,6 @@ class STRIPE {
 					// New Zealand, Remove 15% GST from the Stripe Fee (gets added later)
 					// @based on https://www.classic.ird.govt.nz/gst/additional-calcs/calc-adjust/calc-sales/sales-income.html
 					$stripe_fee              = $stripe_fee - ( ( $stripe_fee * 3 ) / 23 );
-					$stripe_fee_includes_tax = true;
 				}
 
 				break;
@@ -117,7 +115,6 @@ class STRIPE {
 					// Ireland, Remove 23% GST from the Stripe Fee (gets added later)
 					// @based on https://vatcalculator.eu/ireland-vat-calculator/
 					$stripe_fee              = ( $stripe_fee / 123 ) * 100;
-					$stripe_fee_includes_tax = true;
 				}
 
 				break;
