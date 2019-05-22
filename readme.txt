@@ -3,7 +3,7 @@ Contributors: (this should be a list of wordpress.org userid's)
 Donate link: https://itchef.nz
 Tags: woocommerce,xero,stripe,fees
 Requires at least: 4.8
-Tested up to: 4.9.8
+Tested up to: 5.2.1
 Stable tag: 4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,13 +30,20 @@ e.g.
 
 = Can this be used with sending payments to Xero =
 
-Not at this time
+Yes
 
 = I have a question or issue =
 
 Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
+
+= 2.1 =
+* ADDED each product can now have a different xero account code
+
+= 2.0.1 =
+* Entire Codebase re-written for faster and better performance
+* Ensure you test before updating if using any hooks associated with this plugin as these have changed
 
 = 1.3.4 =
 * FIXED bug with stripe fee option not being displayed

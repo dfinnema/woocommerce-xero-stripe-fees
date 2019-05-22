@@ -3,132 +3,140 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Xero Stripe Fees\n"
-"POT-Creation-Date: 2018-08-21 22:32+1200\n"
-"PO-Revision-Date: 2017-06-26 17:14+1200\n"
+"POT-Creation-Date: 2019-05-21 21:53+1200\n"
+"PO-Revision-Date: 2019-05-20 20:48+1200\n"
 "Last-Translator: Dennis Finnema <dennis@itchef.nz>\n"
 "Language-Team: Dennis Finnema <dennis@itchef.nz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: woocommerce-xero-stripe-fees.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:74
-msgid ""
-"Sending payments to Xero does not work with this plugin enabled. Please turn "
-"off this option to avoid getting errors"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:100
-msgid "Stripe Fee Account"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:115
-msgid "Stripe Country"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:129
-msgid "Calculate Stripe fees"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:150
-msgid "Code for Xero account to track Stripe Fees paid."
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:173
-msgid "Add Stripe Fees to Xero Invoices?"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:212
-msgid "Select Stripe Country"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:213
-msgid "Australia"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:214
-msgid "New Zealand"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:215
-msgid "United States of America"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:216
-msgid "Canada"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:217
-msgid "European Union"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:218
-msgid "Ireland"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:219
-msgid "Other (NO TAX Calculations)"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:221
-msgid "The country you have registered with Stripe."
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:304
-msgid "ERROR: No Stripe Fee found for order"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:318
-msgid "Stripe Fee"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:485
-#, php-format
-msgid "Stripe Fee (%s) added to Xero invoice"
-msgstr ""
-
-#: admin/class-woocommerce-xero-stripe-fees-admin.php:557
+#. translators: Plugin Settings link
+#: includes/class-xerostripefees.php:132
 msgid "Settings"
 msgstr ""
 
-#: includes/class-woocommerce-xero-stripe-fees-activator.php:40
+#. translators: Woocommerce Xero Plugin Name
+#: includes/class-xerostripefees.php:203
+msgid "WooCommerce Xero Integration"
+msgstr ""
+
+#. translators: Woocommerce Xero Plugin is required for this plugin to run
+#: includes/class-xerostripefees.php:206
+msgid "is required to be installed and activated!"
+msgstr ""
+
+#. translators: Account Code Field Label in the product settings
+#: includes/modules/Accounts.php:110
+msgid "Xero Account Code"
+msgstr ""
+
+#. translators: Input Field for Account Code in the product settings
+#: includes/modules/Accounts.php:112
 msgid ""
-"<a href=\"https://woocommerce.com/products/xero/\">WooCommerce Xero "
-"Integration</a> is required to be installed and activated!"
+"Sets the account code in Xero when sending the invoice, leave blank to use "
+"the default"
 msgstr ""
 
-#: plugin-update-checker/Puc/v4p1/Plugin/UpdateChecker.php:358
-msgid "Check for updates"
+#. translators: Description of the Stripe Fee ( shown on the Xero Invoice )
+#: includes/modules/Fees.php:72
+msgid "Stripe Fee"
 msgstr ""
 
-#: plugin-update-checker/Puc/v4p1/Plugin/UpdateChecker.php:405
+#. translators: Log Item when Stripe Fee has been removed from the Payment send to Xero
+#: includes/modules/Fees.php:169
 #, php-format
-msgctxt "the plugin title"
-msgid "The %s plugin is up to date."
+msgid "Removed Stripe Fee ($%d) from Payment"
 msgstr ""
 
-#: plugin-update-checker/Puc/v4p1/Plugin/UpdateChecker.php:407
-#, php-format
-msgctxt "the plugin title"
-msgid "A new version of the %s plugin is available."
+#. translators: Stripe Account Code Field Label in the Xero settings
+#: includes/modules/Options.php:39
+msgid "Stripe Fee Account"
 msgstr ""
 
-#: plugin-update-checker/Puc/v4p1/Plugin/UpdateChecker.php:409
-#, php-format
-msgid "Unknown update checker status \"%s\""
+#. translators: Stripe Country selection in the Xero settings
+#: includes/modules/Options.php:54
+msgid "Stripe Country"
 msgstr ""
 
-#: plugin-update-checker/Puc/v4p1/Vcs/PluginUpdateChecker.php:83
-msgid "There is no changelog available."
+#. translators: Calculate Stripe Fees Xero settings
+#: includes/modules/Options.php:69
+msgid "Calculate Stripe fees"
+msgstr ""
+
+#. translators: Enable Xero Account codes for each product in Xero settings
+#: includes/modules/Options.php:84
+msgid "Xero Account Codes per Product"
+msgstr ""
+
+#. translators: Calculate Stripe Fees Xero settings description
+#: includes/modules/Options.php:106
+msgid "Code for Xero account to track Stripe Fees paid."
+msgstr ""
+
+#. translators: Enable Stripe Fees Xero settings description
+#: includes/modules/Options.php:130
+msgid "Add Stripe Fees to Xero Invoices?"
+msgstr ""
+
+#. translators: Description Enable Xero Account Codes per Product in Xero Settings
+#: includes/modules/Options.php:154
+msgid "Enable Xero Account Codes per Product?"
+msgstr ""
+
+#. translators: Dropdown for selecting Stripe Country
+#: includes/modules/Options.php:191
+msgid "Select Stripe Country"
+msgstr ""
+
+#. translators: Australia in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:193
+msgid "Australia"
+msgstr ""
+
+#. translators: New Zealand in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:195
+msgid "New Zealand"
+msgstr ""
+
+#. translators: United States in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:197
+msgid "United States of America"
+msgstr ""
+
+#. translators: Canada in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:199
+msgid "Canada"
+msgstr ""
+
+#. translators: European Union in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:201
+msgid "European Union"
+msgstr ""
+
+#. translators: Ireland in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:203
+msgid "Ireland"
+msgstr ""
+
+#. translators: Other in the dropdown for selecting Stripe Country
+#: includes/modules/Options.php:205
+msgid "Other (NO TAX Calculations)"
+msgstr ""
+
+#. translators: Description of the Stripe Country Dropdown Selection
+#: includes/modules/Options.php:208
+msgid "The country you have registered with Stripe."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
