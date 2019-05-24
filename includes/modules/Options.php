@@ -160,12 +160,12 @@ class Options {
 	 *
 	 * Outputs the Stripe Country Dropdown
 	 *
-	 *     Australia       GST 10%
-	 *     New Zealand     GST 15%
-	 *     United States   NO TAX
-	 *     Canada          NO TAX
-	 *     EU              NO TAX
-	 *     Ireland         VAT 23%
+	 *     Australia       GST 10% - @url - https://support.stripe.com/questions/goods-and-services-tax-for-australia-based-businesses
+	 *     New Zealand     NO TAX included in Stripe Fees
+	 *     United States   NO TAX included in Stripe Fees
+	 *     Canada          NO TAX included in Stripe Fees
+	 *     EU              NO TAX included in Stripe Fees
+	 *     Ireland         VAT 23% - @url - https://support.stripe.com/questions/value-added-tax-vat-for-ireland-based-businesses
 	 *
 	 * @since    1.1.0
 	 */
@@ -200,12 +200,12 @@ class Options {
 			<?php /* translators: European Union in the dropdown for selecting Stripe Country  */ ?>
             <option value="EU"<?php if ('EU' == $value) { echo(' selected'); } ?>><?php _e('European Union', 'woocommerce-xero-stripe-fees'); ?></option>
 			<?php /* translators: Ireland in the dropdown for selecting Stripe Country  */ ?>
-            <option value="IE"<?php if ('IE' == $value) { echo(' selected'); } ?>><?php _e('Ireland', 'woocommerce-xero-stripe-fees'); ?></option>
+            <option value="IE"<?php if ('IE' == $value) { echo(' selected'); } ?>><?php _e('Ireland ( Stripe Fee includes VAT )', 'woocommerce-xero-stripe-fees'); ?></option>
 			<?php /* translators: Other in the dropdown for selecting Stripe Country  */ ?>
-            <option value="XX"<?php if ('XX' == $value) { echo(' selected'); } ?>><?php _e('Other (NO TAX Calculations)', 'woocommerce-xero-stripe-fees'); ?></option>
+            <option value="XX"<?php if ('XX' == $value) { echo(' selected'); } ?>><?php _e('Other', 'woocommerce-xero-stripe-fees'); ?></option>
 		</select>
 		<?php /* translators: Description of the Stripe Country Dropdown Selection  */ ?>
-		<p class="description"><?php _e('The country you have registered with Stripe.', 'woocommerce-xero-stripe-fees'); ?></p>
+		<p class="description"><?php _e('The country you have registered with Stripe. For customers in Ireland / Australia the tax will be removed from your stripe fee as Xero will add it back on.', 'woocommerce-xero-stripe-fees'); ?></p>
 		<?php
 	}
 }

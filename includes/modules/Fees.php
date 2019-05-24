@@ -68,8 +68,7 @@ class Fees {
 
 								// Create Line Item for Stripe Fee
 								$line_item_stripe_fee = array(
-									/* translators: Description of the Stripe Fee ( shown on the Xero Invoice )  */
-									XERO::DESCRIPTION    => __('Stripe Fee','woocommerce-xero-stripe-fees'),
+									XERO::DESCRIPTION    => STRIPE::get_fee_description(),
 									XERO::ACCOUNTCODE    => $stripe_fee_account_code,
 									XERO::UNITAMOUNT     => $stripe_fee_negative,
 									XERO::QUANTITY       => 1,
@@ -102,8 +101,8 @@ class Fees {
 								}
 
 								// Remove Tax Type and set tax amount when  Calculating Taxes
-								if (true == $woo_taxes_enabled) {
-									$this->log(' + Taxes Enabled');
+								if (true == $woo_taxes_enabled && true == STRIPE::is_tax_charged_on_stripe_fee() ) {
+									$this->log(' + Taxes Enabled, Stripe Fee includes tax');
 
 									// Floatval just in case
 									$stripe_fee_tax_amount = floatval($stripe_fee_orginal) -  floatval($stripe_fee_net);

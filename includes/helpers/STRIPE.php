@@ -13,6 +13,16 @@ defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );
 class STRIPE {
 
 	/**
+	 * Gets the Stripe Fee Description
+	 * @return string
+	 */
+	public static function get_fee_description() {
+
+		/* translators: Description of the Stripe Fee ( shown on the Xero Invoice )  */
+		return __('Stripe Fee','woocommerce-xero-stripe-fees');
+	}
+
+	/**
 	 * Gets the Stripe fee for an order
 	 * @param int $order_id
 	 *
@@ -62,6 +72,39 @@ class STRIPE {
 	}
 
 	/**
+	 * Checks if the Stripe country has taxes charge in the Stripe Fee
+	 * @return bool
+	 */
+	public static function is_tax_charged_on_stripe_fee() {
+		// Get Stripe Country
+		$stripe_country = get_option( 'wc_xero_dfc_stripe_fee_country','XX');
+
+		// Are taxes enabled in WooCommerce?
+		$woo_taxes_enabled = \wc_tax_enabled();
+
+		// Stripe Fee TAX Calculations
+		switch ( $stripe_country ) {
+
+			case "AU":
+			case "IE":
+				if (true == $woo_taxes_enabled) {
+					return true;
+				}
+				break;
+
+			case "NZ":
+			case "US":
+			case "CA":
+			case "EU":
+			case "XX":
+				// Other, Leave it as is
+				break;
+
+		}
+		return false;
+	}
+
+	/**
 	 * Gets the Stripe Fee based on the Stripe Country.
 	 * Calculates the Fee without any taxes added depending on if taxes are enabled
 	 * and what Stripe Country the account is for
@@ -90,12 +133,7 @@ class STRIPE {
 				break;
 
 			case "NZ":
-				if (true == $woo_taxes_enabled) {
-					// New Zealand, Remove 15% GST from the Stripe Fee (gets added later)
-					// @based on https://www.classic.ird.govt.nz/gst/additional-calcs/calc-adjust/calc-sales/sales-income.html
-					$stripe_fee              = $stripe_fee - ( ( $stripe_fee * 3 ) / 23 );
-				}
-
+				// NZ, Leave it as is
 				break;
 
 			case "US":

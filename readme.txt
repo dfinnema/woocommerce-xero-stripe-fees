@@ -38,6 +38,10 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
+= 2.1.1 =
+* UPDATED auto-updater upgraded to 4.6
+* FIXED Stripe Fee tax calculations based on Country
+
 = 2.1 =
 * ADDED each product can now have a different xero account code
 
