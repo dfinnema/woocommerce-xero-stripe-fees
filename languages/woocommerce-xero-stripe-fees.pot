@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Xero Stripe Fees\n"
-"POT-Creation-Date: 2019-05-24 22:02+1200\n"
+"POT-Creation-Date: 2019-06-08 10:34+1200\n"
 "PO-Revision-Date: 2019-05-20 20:48+1200\n"
 "Last-Translator: Dennis Finnema <dennis@itchef.nz>\n"
 "Language-Team: Dennis Finnema <dennis@itchef.nz>\n"
@@ -26,13 +26,14 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#. translators: Woocommerce Xero Plugin Name
-#: includes/class-xerostripefees.php:203
-msgid "WooCommerce Xero Integration"
+#. translators: Woocommerce Xero Stripe Fees Plugin Name for Missing plugin notices
+#. Plugin Name of the plugin/theme
+#: includes/class-xerostripefees.php:217
+msgid "WooCommerce Xero Stripe Fees"
 msgstr ""
 
-#. translators: Woocommerce Xero Plugin is required for this plugin to run
-#: includes/class-xerostripefees.php:206
+#. translators: Woocommerce Xero Stripe Fees Plugin is required for this plugin to run
+#: includes/class-xerostripefees.php:220
 msgid "is required to be installed and activated!"
 msgstr ""
 
@@ -42,12 +43,13 @@ msgid "Stripe Fee"
 msgstr ""
 
 #. translators: Account Code Field Label in the product settings
-#: includes/modules/Accounts.php:110
+#: includes/modules/Accounts.php:148 includes/modules/Accounts.php:169
+#: includes/modules/Accounts.php:200
 msgid "Xero Account Code"
 msgstr ""
 
 #. translators: Input Field for Account Code in the product settings
-#: includes/modules/Accounts.php:112
+#: includes/modules/Accounts.php:150 includes/modules/Accounts.php:171
 msgid ""
 "Sets the account code in Xero when sending the invoice, leave blank to use "
 "the default"
@@ -101,7 +103,7 @@ msgstr ""
 
 #. translators: Australia in the dropdown for selecting Stripe Country
 #: includes/modules/Options.php:193
-msgid "Australia"
+msgid "Australia ( Stripe Fee includes GST )"
 msgstr ""
 
 #. translators: New Zealand in the dropdown for selecting Stripe Country
@@ -180,10 +182,6 @@ msgstr ""
 
 #: updater/Puc/v4p6/Vcs/PluginUpdateChecker.php:98
 msgid "There is no changelog available."
-msgstr ""
-
-#. Plugin Name of the plugin/theme
-msgid "WooCommerce Xero Stripe Fees"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

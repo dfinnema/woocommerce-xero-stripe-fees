@@ -197,20 +197,36 @@ class XEROSTRIPEFEES {
 		if (! in_array( 'woocommerce-xero/woocommerce-xero.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 
 			// Nope not activate, lets deactivate this plugin
-			deactivate_plugins( XEROSTRIPEFEES_FILE );
+			if (!function_exists('deactivate_plugins')) {
+				require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			}
+			\deactivate_plugins( XEROSTRIPEFEES_FILE );
 
-			/* translators: Woocommerce Xero Plugin Name */
-			$name = __('WooCommerce Xero Integration','woocommerce-xero-stripe-fees');
+			// Tell the user
+			add_action('admin_notices', array( $this, 'show_needed_plugins_notice_xero' ) );
 
-			/* translators: Woocommerce Xero Plugin is required for this plugin to run */
-			$why = __('is required to be installed and activated!','woocommerce-xero-stripe-fees');
-
-			$link = sprintf('<a href="https://woocommerce.com/products/xero/">%s</a> %s', esc_html( $name ), esc_html( $why ) );
-
-			// Tell the user about it
-			die('<p>'.$link.'</p>');
 		}
-    }
+	}
+
+	/**
+	 * Shows an admin notice if missing plugins
+	 */
+	public function show_needed_plugins_notice_xero_fees() {
+
+		/* translators: Woocommerce Xero Stripe Fees Plugin Name for Missing plugin notices */
+		$name = __('WooCommerce Xero Stripe Fees','woocommerce-xero-stripe-fees');
+
+		/* translators: Woocommerce Xero Stripe Fees Plugin is required for this plugin to run */
+		$why = __('is required to be installed and activated!','woocommerce-xero-stripe-fees');
+
+		$link = sprintf('<a href="https://github.com/dfinnema/woocommerce-xero-stripe-fees">%s</a> %s', esc_html( $name ), esc_html( $why ) );
+
+		?>
+		<div class="notice notice-error is-dismissible">
+			<p><?php echo($link); ?></p>
+		</div>
+		<?php
+	}
 
 	/**
 	 * Adds Textdomain Support
