@@ -7,8 +7,9 @@ It Adds a stripe fee to your Xero invoices / payments for easier reconciliation
 ### Features
 
   - Adds a Stripe Fee to the invoice send to Xero
+  - Per product Xero Accoutn Codes (including variations)
   - Removes Stripe Fee from payments send to Xero
-  - Multi Stripe Countries supported
+  - Multiple Stripe Countries supported
   
 ### Installation
 
@@ -50,6 +51,11 @@ Logs are created in the ```wp-content/uploads/wc-logs``` the filename should sta
 Want to contribute? Great!
 
 Feel free to post an issue or create a pull request. 
+
+
+### Security
+
+Found a security issue, please email hello@itchef.nz instead of opening an issue
 
 ### Are you finding this useful?
 

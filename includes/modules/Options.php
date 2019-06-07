@@ -190,7 +190,7 @@ class Options {
 			<?php /* translators: Dropdown for selecting Stripe Country  */ ?>
 			<option value=""<?php if ('' == $value) {echo(' selected'); } ?> disabled><?php _e('Select Stripe Country', 'woocommerce-xero-stripe-fees'); ?></option>
 			<?php /* translators: Australia in the dropdown for selecting Stripe Country  */ ?>
-			<option value="AU"<?php if ('AU' == $value) { echo(' selected'); } ?>><?php _e('Australia', 'woocommerce-xero-stripe-fees'); ?></option>
+			<option value="AU"<?php if ('AU' == $value) { echo(' selected'); } ?>><?php _e('Australia ( Stripe Fee includes GST )', 'woocommerce-xero-stripe-fees'); ?></option>
 			<?php /* translators: New Zealand in the dropdown for selecting Stripe Country  */ ?>
             <option value="NZ"<?php if ('NZ' == $value) { echo(' selected'); } ?>><?php _e('New Zealand', 'woocommerce-xero-stripe-fees'); ?></option>
 			<?php /* translators: United States in the dropdown for selecting Stripe Country  */ ?>
