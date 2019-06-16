@@ -38,6 +38,10 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
+= 2.1.3 =
+* ADDED Default Xero Contact can now be set for any invoices being sent to Xero
+* FIXED Calculate Stripe fees option
+
 = 2.1.2 =
 * FIXED Xero Account codes now also work with product variations
 

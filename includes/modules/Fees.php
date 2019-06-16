@@ -13,11 +13,15 @@ class Fees {
 	 */
 	public function __construct() {
 
-		// Convert Data, priority 20 in case another plugin needs to access the data
-		add_filter('woocommerce_xero_stripe_fees_array', array( $this , 'add_stripe_fee' ), 20, 2 );
+		// Make sure the option for calculating Stripe Fees is enabled
+		if ('on' == get_option('wc_xero_dfc_stripe_fee_enabled') ) {
 
-		// Add the Woocommerce Xero Hooks
-		add_filter('woocommerce_xero_payment_amount', array( $this , 'payment_remove_stripe_fee'), 10, 2 );
+			// Convert Data, priority 20 in case another plugin needs to access the data
+			add_filter( 'woocommerce_xero_stripe_fees_array', array( $this, 'add_stripe_fee' ), 20, 2 );
+
+			// Add the Woocommerce Xero Hooks
+			add_filter( 'woocommerce_xero_payment_amount', array( $this, 'payment_remove_stripe_fee' ), 10, 2 );
+		}
 	}
 
 	/**
@@ -172,7 +176,6 @@ class Fees {
 
 			}
 		}
-
 		return $amount;
 	}
 

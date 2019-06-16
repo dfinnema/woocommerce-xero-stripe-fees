@@ -49,7 +49,8 @@ class XEROSTRIPEFEES {
 			array(
                 'Options',
 				'Fees',
-				'Accounts'
+				'Accounts',
+                'Contacts'
 			)
 		);
 
@@ -102,6 +103,11 @@ class XEROSTRIPEFEES {
 
 			// Add the Fees, uses a filter for easy expansion options
 			$xml_array = apply_filters('woocommerce_xero_stripe_fees_array', $xml_array , $order_id );
+
+			// Overwrite Xero Contact if needed
+			$xml_array = XERO::update_array_contact_id($xml_array);
+
+            // Logic Check on the Array
 			if (false === $xml_array || !is_array($xml_array) || empty($xml_array)) {
 				$this->log('Failed to Update Data');
 				return $xml;
