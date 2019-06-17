@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Xero Stripe Fees\n"
-"POT-Creation-Date: 2019-06-08 10:34+1200\n"
+"POT-Creation-Date: 2019-06-16 21:14+1200\n"
 "PO-Revision-Date: 2019-05-20 20:48+1200\n"
 "Last-Translator: Dennis Finnema <dennis@itchef.nz>\n"
 "Language-Team: Dennis Finnema <dennis@itchef.nz>\n"
@@ -22,18 +22,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: Plugin Settings link
-#: includes/class-xerostripefees.php:132
+#: includes/class-xerostripefees.php:138
 msgid "Settings"
 msgstr ""
 
 #. translators: Woocommerce Xero Stripe Fees Plugin Name for Missing plugin notices
 #. Plugin Name of the plugin/theme
-#: includes/class-xerostripefees.php:217
+#: includes/class-xerostripefees.php:223
 msgid "WooCommerce Xero Stripe Fees"
 msgstr ""
 
 #. translators: Woocommerce Xero Stripe Fees Plugin is required for this plugin to run
-#: includes/class-xerostripefees.php:220
+#: includes/class-xerostripefees.php:226
 msgid "is required to be installed and activated!"
 msgstr ""
 
@@ -43,20 +43,20 @@ msgid "Stripe Fee"
 msgstr ""
 
 #. translators: Account Code Field Label in the product settings
-#: includes/modules/Accounts.php:148 includes/modules/Accounts.php:169
-#: includes/modules/Accounts.php:200
+#: includes/modules/Accounts.php:147 includes/modules/Accounts.php:168
+#: includes/modules/Accounts.php:199
 msgid "Xero Account Code"
 msgstr ""
 
 #. translators: Input Field for Account Code in the product settings
-#: includes/modules/Accounts.php:150 includes/modules/Accounts.php:171
+#: includes/modules/Accounts.php:149 includes/modules/Accounts.php:170
 msgid ""
 "Sets the account code in Xero when sending the invoice, leave blank to use "
 "the default"
 msgstr ""
 
 #. translators: Log Item when Stripe Fee has been removed from the Payment send to Xero
-#: includes/modules/Fees.php:168
+#: includes/modules/Fees.php:172
 #, php-format
 msgid "Removed Stripe Fee ($%d) from Payment"
 msgstr ""
@@ -81,63 +81,97 @@ msgstr ""
 msgid "Xero Account Codes per Product"
 msgstr ""
 
+#. translators: Enable Xero Contact Override in Xero settings
+#: includes/modules/Options.php:99
+msgid "Override the Contact sent to Xero"
+msgstr ""
+
+#. translators: Enable Xero Account codes for each product in Xero settings
+#: includes/modules/Options.php:114
+msgid "Default Xero Contact to be used for all invoices"
+msgstr ""
+
+#. translators: Xero Contact ID used for all invoices
+#: includes/modules/Options.php:129
+msgid "Default Xero Contact ID to be used for all invoices"
+msgstr ""
+
 #. translators: Calculate Stripe Fees Xero settings description
-#: includes/modules/Options.php:106
+#: includes/modules/Options.php:151
 msgid "Code for Xero account to track Stripe Fees paid."
 msgstr ""
 
 #. translators: Enable Stripe Fees Xero settings description
-#: includes/modules/Options.php:130
+#: includes/modules/Options.php:175
 msgid "Add Stripe Fees to Xero Invoices?"
 msgstr ""
 
+#. translators: Master Xero Contact ID field
+#: includes/modules/Options.php:186
+msgid ""
+"Xero Contact ID (needs to match the billing email) that should be used for "
+"all Xero Invoices"
+msgstr ""
+
+#. translators: Master Xero Contact field
+#: includes/modules/Options.php:209
+msgid "Xero Contact Billing Email that should be used for all Xero Invoices"
+msgstr ""
+
 #. translators: Description Enable Xero Account Codes per Product in Xero Settings
-#: includes/modules/Options.php:154
+#: includes/modules/Options.php:233
 msgid "Enable Xero Account Codes per Product?"
 msgstr ""
 
+#. translators: Description Enable Xero Contact Override in Xero Settings
+#: includes/modules/Options.php:257
+msgid ""
+"Enable Xero Contact Override, using the fields below. Please note this may "
+"interfere with other plugins that connect to Xero's Contact API"
+msgstr ""
+
 #. translators: Dropdown for selecting Stripe Country
-#: includes/modules/Options.php:191
+#: includes/modules/Options.php:294
 msgid "Select Stripe Country"
 msgstr ""
 
 #. translators: Australia in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:193
+#: includes/modules/Options.php:296
 msgid "Australia ( Stripe Fee includes GST )"
 msgstr ""
 
 #. translators: New Zealand in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:195
+#: includes/modules/Options.php:298
 msgid "New Zealand"
 msgstr ""
 
 #. translators: United States in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:197
+#: includes/modules/Options.php:300
 msgid "United States of America"
 msgstr ""
 
 #. translators: Canada in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:199
+#: includes/modules/Options.php:302
 msgid "Canada"
 msgstr ""
 
 #. translators: European Union in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:201
+#: includes/modules/Options.php:304
 msgid "European Union"
 msgstr ""
 
 #. translators: Ireland in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:203
+#: includes/modules/Options.php:306
 msgid "Ireland ( Stripe Fee includes VAT )"
 msgstr ""
 
 #. translators: Other in the dropdown for selecting Stripe Country
-#: includes/modules/Options.php:205
+#: includes/modules/Options.php:308
 msgid "Other"
 msgstr ""
 
 #. translators: Description of the Stripe Country Dropdown Selection
-#: includes/modules/Options.php:208
+#: includes/modules/Options.php:311
 msgid ""
 "The country you have registered with Stripe. For customers in Ireland / "
 "Australia the tax will be removed from your stripe fee as Xero will add it "
