@@ -15,15 +15,13 @@ class Accounts {
 	public function __construct() {
 
 		// Is this Module Enabled?
-		$enabled = get_option( 'wc_xero_dfc_stripe_fee_accounts_enabled' , false );
-		if ( 'on' == $enabled ) {
+		if ( 'on' == get_option( 'wc_xero_dfc_stripe_fee_accounts_enabled' , false ) ) {
 
 			// Display WooCommerce Product Custom Field
 			add_action( 'woocommerce_product_options_general_product_data', array( $this, 'woo_custom_product_field_add' ), 10 );
 
 			// Display WooCommerce Product Custom Field for Variation Products
 			add_action( 'woocommerce_variation_options_pricing', array( $this, 'woo_custom_product_field_add_variation' ), 10, 3 );
-
 
 			// Saves the custom fields
 			add_action( 'woocommerce_process_product_meta', array( $this, 'woo_custom_product_field_save' ), 10, 1 );
@@ -38,6 +36,7 @@ class Accounts {
 			//add_filter( 'woocommerce_xero_stripe_fees_added_array', array( $this, 'update_product_account_codes' ), 25, 2 );
 			add_filter( 'woocommerce_xero_stripe_fees_array', array( $this, 'update_product_account_codes' ), 25, 2 );
 		}
+
 	}
 
 	/**

@@ -87,6 +87,51 @@ class Options {
 			'wc_xero_settings'
 		);
 
+		// Enable Contact override
+		register_setting(
+			'woocommerce_xero',
+			'wc_xero_dfc_stripe_fee_contact_override'
+		);
+
+		add_settings_field(
+			'wc_xero_dfc_stripe_fee_contact_override',
+			/* translators: Enable Xero Contact Override in Xero settings  */
+			__('Override the Contact sent to Xero', 'woocommerce-xero-stripe-fees'),
+			array( $this, 'enabled_contacts_input' ),
+			'woocommerce_xero',
+			'wc_xero_settings'
+		);
+
+		// Allow all Xero invoices to be assigned to one Contact
+		register_setting(
+			'woocommerce_xero',
+			'wc_xero_dfc_stripe_fee_contact_master'
+		);
+
+		add_settings_field(
+			'wc_xero_dfc_stripe_fee_contact_master',
+			/* translators: Enable Xero Account codes for each product in Xero settings  */
+			__('Default Xero Contact to be used for all invoices', 'woocommerce-xero-stripe-fees'),
+			array( $this, 'master_xero_contact_input' ),
+			'woocommerce_xero',
+			'wc_xero_settings'
+		);
+
+		// Allow all Xero invoices to be assigned to one Contact
+		register_setting(
+			'woocommerce_xero',
+			'wc_xero_dfc_stripe_fee_contact_id'
+		);
+
+		add_settings_field(
+			'wc_xero_dfc_stripe_fee_contact_id',
+			/* translators: Xero Contact ID used for all invoices  */
+			__('Default Xero Contact ID to be used for all invoices', 'woocommerce-xero-stripe-fees'),
+			array( $this, 'master_xero_contact_id_input' ),
+			'woocommerce_xero',
+			'wc_xero_settings'
+		);
+
 	}
 
 	/**
@@ -131,6 +176,40 @@ class Options {
 		<?php
 	}
 
+	public function master_xero_contact_id_input() {
+
+		$value_id = get_option('wc_xero_dfc_stripe_fee_contact_id');
+
+		?>
+        <input id='wc_xero_dfc_stripe_fee_contact_id' name='wc_xero_dfc_stripe_fee_contact_id' type='text' value='<?php echo esc_attr( $value_id ); ?>' placeholder="e1120641-c8d5-4e51-962c-52d1d1086a92" />
+		<?php /* translators: Master Xero Contact ID field  */ ?>
+        <p class="description"><?php _e('Xero Contact ID (needs to match the billing email) that should be used for all Xero Invoices', 'woocommerce-xero-stripe-fees'); ?></p>
+		<?php
+    }
+
+	/**
+	 * The Master XERO Contact Inout
+	 *
+	 * Outputs the Xero Master Contact Field
+	 *
+	 * @since    2.1.3
+	 */
+	public function master_xero_contact_input() {
+
+		$value = get_option('wc_xero_dfc_stripe_fee_contact_master');
+		$value_id = get_option('wc_xero_dfc_stripe_fee_contact_id');
+
+		if ($value) {
+			XERO::set_default_contact();
+        }
+
+		?>
+        <input id='wc_xero_dfc_stripe_fee_contact_master' name='wc_xero_dfc_stripe_fee_contact_master' type='email' value='<?php echo esc_attr( $value ); ?>' placeholder="shop@basketcase.co" />
+		<?php /* translators: Master Xero Contact field  */ ?>
+        <p class="description"><?php _e('Xero Contact Billing Email that should be used for all Xero Invoices', 'woocommerce-xero-stripe-fees'); ?></p>
+		<?php
+	}
+
 	/**
 	 * The STRIPE FEE ACCOUNTS Enabled option
 	 *
@@ -152,6 +231,30 @@ class Options {
         <input type="checkbox" name="wc_xero_dfc_stripe_fee_accounts_enabled" id="wc_xero_dfc_stripe_fee_accounts_enabled" <?php echo($option); ?> />
 		<?php /* translators: Description Enable Xero Account Codes per Product in Xero Settings  */ ?>
         <p class="description"><?php _e('Enable Xero Account Codes per Product?', 'woocommerce-xero-stripe-fees'); ?></p>
+		<?php
+	}
+
+	/**
+	 * The STRIPE FEE CONTACTS Enabled option
+	 *
+	 * Outputs the Stripe Accounts Enabled Checkbox Field
+	 *
+	 * @since    2.1.3
+	 */
+	public function enabled_contacts_input() {
+
+		$option = get_option('wc_xero_dfc_stripe_fee_contact_override');
+
+		if ('on' == $option) {
+			$option = 'checked';
+		} else {
+			$option = '';
+		}
+
+		?>
+        <input type="checkbox" name="wc_xero_dfc_stripe_fee_contact_override" id="wc_xero_dfc_stripe_fee_contact_override" <?php echo($option); ?> />
+		<?php /* translators: Description Enable Xero Contact Override in Xero Settings  */ ?>
+        <p class="description"><?php _e('Enable Xero Contact Override, using the fields below. Please note this may interfere with other plugins that connect to Xero\'s Contact API', 'woocommerce-xero-stripe-fees'); ?></p>
 		<?php
 	}
 
