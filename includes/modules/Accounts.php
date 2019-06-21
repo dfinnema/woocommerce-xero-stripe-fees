@@ -78,9 +78,7 @@ class Accounts {
 										if ( empty( $meta->value ) || is_serialized( $meta->value ) || '_' === substr( $meta->key, 0, 1 ) ) {
 											continue;
 										}
-
 										$attributes[] = $meta->key . ": " . $meta->value;
-
 									}
 
 									if ( 0 < count( $attributes ) ) {
@@ -97,11 +95,14 @@ class Accounts {
 							}
 						}
 
-						$this->log(' + Items'.print_r($items,1));
+						$this->log(' + Line Items '.print_r($line_items,1));
 
-						// Go through each line item and update the account code if one is found
-						foreach ($line_items as &$line_item) {
-							$description = $line_item[XERO::DESCRIPTION];
+						if (array_key_exists('Description',$line_items)) {
+
+							// Single Item
+							$this->log(' + Single Item Found in Order');
+
+							$description = $line_items[XERO::DESCRIPTION];
 
 							$this->log(' + Looking to Match "'.$description.'"');
 
@@ -112,7 +113,31 @@ class Accounts {
 								if ($account_code_tmp && !empty($account_code_tmp)) {
 									// Update Account Code
 									$this->log(' + Updated Account Code');
-									$line_item[XERO::ACCOUNTCODE] = $account_code_tmp;
+									$line_items[XERO::ACCOUNTCODE] = $account_code_tmp;
+								}
+							}
+
+						} else {
+
+							// Single Item
+							$this->log(' + Multiple Items Found in Order');
+
+							// Go through each line item and update the account code if one is found
+							foreach ($line_items as &$line_item) {
+
+								$description = $line_item[XERO::DESCRIPTION];
+
+								$this->log(' + Looking to Match "'.$description.'"');
+
+								if (array_key_exists($description,$items)) {
+									$this->log('   MATCHED');
+									// Get Account Code (if it has one)
+									$account_code_tmp = get_post_meta( $items[$description] , '_xero_account_code',true);
+									if ($account_code_tmp && !empty($account_code_tmp)) {
+										// Update Account Code
+										$this->log(' + Updated Account Code');
+										$line_item[XERO::ACCOUNTCODE] = $account_code_tmp;
+									}
 								}
 							}
 						}
