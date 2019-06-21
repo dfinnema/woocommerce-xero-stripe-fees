@@ -38,6 +38,9 @@ Please head over to https://github.com/dfinnema/woocommerce-xero-stripe-fees
 
 == Changelog ==
 
+= 2.1.4 =
+* FIXED Single item in order without Stripe fee was causing mismatch with Xero Account Codes
+
 = 2.1.3 =
 * ADDED Default Xero Contact can now be set for any invoices being sent to Xero
 * FIXED Calculate Stripe fees option
