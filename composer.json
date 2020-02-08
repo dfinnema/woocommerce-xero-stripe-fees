@@ -1,5 +1,6 @@
 {
     "require": {
-        "digitickets/lalit": "*"
+        "digitickets/lalit": "*",
+        "yahnis-elsts/plugin-update-checker": "^4.9"
     }
 }

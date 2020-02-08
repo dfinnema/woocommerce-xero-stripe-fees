@@ -31,7 +31,7 @@ class XEROSTRIPEFEES {
 		// Add Text domain Support
         $this->add_textdomain_support();
 
-        // Load Composer ( XML Conversion Functions )
+        // Load Composer ( XML Conversion Functions, Updater )
 		$this->composer_load();
 
 		// Load Helpers
@@ -155,7 +155,7 @@ class XEROSTRIPEFEES {
 	    if (('on' == $debug) && (!empty($message))) {
 		    if ( class_exists( 'WC_Logger' ) ) {
 			    $logger = new WC_Logger();
-			    $logger->add( 'xero', '[Xero Sripe Fees] - '.$message );
+			    $logger->add( 'xero', '[Xero Stripe Fees] - '.$message );
 		    }
 	    }
     }
