@@ -1,0 +1,47 @@
+name: WP Plugin ZIP
+on:
+  push:
+    branches:
+      - release
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set Plugin Version
+      run: |
+        echo ::set-env name=PR_BODY::"$(grep -w Version: woocommerce-xero-stripe-fees.php |grep -v -- -Version|awk '{print $NF}')"
+    - name: Create Wordpress Plugin Dir
+      run: |
+        mkdir woocommerce-xero-stripe-fees
+        mv `ls | grep -v woocommerce-xero-stripe-fees` woocommerce-xero-stripe-fees/
+        mv woocommerce-xero-stripe-fees.php woocommerce-xero-stripe-fees/woocommerce-xero-stripe-fees.php
+    - name: Zip Folder
+      run: zip -r release-woocommerce-xero-stripe-fees.zip . -x "*.git/*" "*.github/*" "*_source/*" "*config.codekit3" "*.gitignore" "*phpcs.xml" "*Testing.php" "*test/*" "*.DS_Store" "*README.MD"
+    - name: Cleanup Folders
+      run: |
+        cd woocommerce-xero-stripe-fees
+        mv * ../
+        cd ../
+        rm -rf woocommerce-xero-stripe-fees
+        echo "Done"
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: v${{ env.PR_BODY }}
+          release_name: Release - v${{ env.PR_BODY }}
+          draft: false
+          prerelease: false
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} 
+          asset_path: ./release-woocommerce-xero-stripe-fees.zip
+          asset_name: release-woocommerce-xero-stripe-fees.zip
+          asset_content_type: application/zip

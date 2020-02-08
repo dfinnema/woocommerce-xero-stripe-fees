@@ -7,13 +7,13 @@ It Adds a stripe fee to your Xero invoices / payments for easier reconciliation
 ### Features
 
   - Adds a Stripe Fee to the invoice send to Xero
-  - Per product Xero Accoutn Codes (including variations)
+  - Per product Xero Account Codes (including variations)
   - Removes Stripe Fee from payments send to Xero
   - Multiple Stripe Countries supported
   
 ### Installation
 
-1. Download as .zip and add plugin using the upload function or add the .php file to ```wp-content/plugins/woocommerce-xero-stripe-fees``` 
+1. Download the latest release and add the plugin using the Wordpress upload function
 2. Activate the plugin in Wordpress
 3. Add the Xero 'Stripe Fee' account code in ```Woocommerce > Xero``` options page (at the bottom)
 4. Test to see if it works (see debug below)
@@ -25,7 +25,7 @@ This Plugin requires the following plugins to be active in Wordpress
 | Plugin | Link |
 | ------ | ------ |
 | Woocommerce 3.6 or above | https://woocommerce.com |
-| Woocommerce Xero (tested with 1.7.16) | https://woocommerce.com/products/xero/ |
+| Woocommerce Xero (tested with 1.7.24) | https://woocommerce.com/products/xero/ |
 
 ### Bugs
 
