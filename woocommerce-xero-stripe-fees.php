@@ -13,7 +13,7 @@
  *
  * @woocommerce-extension
  * WC requires at least: 3.6
- * WC tested up to: 3.9.1
+ * WC tested up to: 4.5.1
  */
 
 defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );

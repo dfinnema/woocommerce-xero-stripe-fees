@@ -25,7 +25,7 @@ This Plugin requires the following plugins to be active in Wordpress
 | Plugin | Link |
 | ------ | ------ |
 | Woocommerce 3.6 or above | https://woocommerce.com |
-| Woocommerce Xero (tested with 1.7.24) | https://woocommerce.com/products/xero/ |
+| Woocommerce Xero (tested with 1.7.33) | https://woocommerce.com/products/xero/ |
 
 ### Bugs
 
