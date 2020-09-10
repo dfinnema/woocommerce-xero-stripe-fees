@@ -49,7 +49,7 @@ add_action( 'plugins_loaded', 'xerostripefees' );
 /**
  * Updater
  */
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 $xerostripefees_updater = \Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/dfinnema/woocommerce-xero-stripe-fees',
 	__FILE__,
