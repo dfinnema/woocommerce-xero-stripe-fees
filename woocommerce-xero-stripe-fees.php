@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Xero Stripe Fees
  * Plugin URI: https://github.com/dfinnema/woocommerce-xero-stripe-fees
  * Description: Extends the WooCommerce Xero Extension with Stripe Fees on Invoices
- * Version: 2.1.5
+ * Version: 2.1.6
  * Author: IT Chef
  * Author URI: https://itchef.nz
  * License: GPL-2.0+
@@ -13,12 +13,12 @@
  *
  * @woocommerce-extension
  * WC requires at least: 3.6
- * WC tested up to: 3.9.1
+ * WC tested up to: 4.5.1
  */
 
 defined( 'ABSPATH' ) || die( 'Cheatin&#8217; uh?' );
 
-define('XEROSTRIPEFEES_VERSION','2.1.5');
+define('XEROSTRIPEFEES_VERSION','2.1.6');
 define('XEROSTRIPEFEES_FILE',__FILE__);
 
 /**
@@ -49,7 +49,7 @@ add_action( 'plugins_loaded', 'xerostripefees' );
 /**
  * Updater
  */
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 $xerostripefees_updater = \Puc_v4_Factory::buildUpdateChecker(
 	'https://github.com/dfinnema/woocommerce-xero-stripe-fees',
 	__FILE__,
