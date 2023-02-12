@@ -1,3 +1,6 @@
+# No Longer Supported
+This project is no longer maintained. We are no longer responding to Issues or Pull Requests unless they relate to security concerns. We encourage interested developers to fork this project and make it their own, or use the [Stripe + Xero integration](https://www.xero.com/us/partnerships/stripe/) provided by Xero
+
 # Woocommerce Xero Stripe Fees
 This is a Plugin for Wordpress using **Woocommerce** with the **Woocommerce Xero** Extension and **Stripe**
 
@@ -45,13 +48,6 @@ Having issues with invoices being send to Xero?
 Enable debug under ```Woocommerce > Xero```
 
 Logs are created in the ```wp-content/uploads/wc-logs``` the filename should start with **xero** followed by a bunch of numbers with the extension of **.log**
-
-### Development
-
-Want to contribute? Great!
-
-Feel free to post an issue or create a pull request. 
-
 
 ### Security
 
